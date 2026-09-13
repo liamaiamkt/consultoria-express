@@ -6,161 +6,200 @@
 <title>Qual o problema? · Consultoria Express · LI.MA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --red:#CC0001; --dred:#8C0005; --blue:#295264; --yellow:#FEAD26;
-  --gray:#F4F4F4; --line:#E4E4E4; --txt:#1A1A1A; --mut:#6B6B6B;
+  --papel:#FAF7F2; --grade:#E2E6EA; --margem:#E8A0A0;
+  --tinta:#141414; --grafite:#4A4A4A; --leve:#7A7570;
+  --amber:#FEAD26; --vermelho:#CC0001; --petroleo:#295264;
 }
 *{box-sizing:border-box}
-body{margin:0;background:#fff;color:var(--txt);font-family:'Archivo',Arial,sans-serif;font-size:16px;line-height:1.55}
-.wrap{max-width:760px;margin:0 auto;padding:0 24px 80px}
+html,body{margin:0;padding:0}
+body{
+  background-color:var(--papel);
+  background-image:
+    linear-gradient(var(--grade) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grade) 1px, transparent 1px);
+  background-size:26px 26px;
+  color:var(--tinta);
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:16px; line-height:1.55;
+}
+body:before{content:"";position:fixed;left:46px;top:0;bottom:0;width:1.5px;background:var(--margem);opacity:.7;z-index:0}
+@media(max-width:700px){body:before{left:18px}}
 
-header{background:var(--red);padding:22px 0 0;position:relative;overflow:hidden}
-header .wrap{padding-bottom:26px;position:relative;z-index:2}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{width:38px;height:auto}
-.brand span{color:#fff;font-weight:700;letter-spacing:.08em;font-size:19px}
-.brand small{display:block;color:#F7CFCF;font-weight:400;font-size:12px;letter-spacing:.02em;margin-top:2px}
-.road{position:absolute;left:0;right:0;bottom:-2px;height:26px;z-index:1}
-.road i{position:absolute;left:0;right:0;height:1px;background:var(--yellow);opacity:.85}
+.wrap{max-width:860px;margin:0 auto;padding:34px 26px 90px;position:relative;z-index:1}
 
-.steps{display:flex;gap:6px;margin:22px 0 30px}
-.steps b{flex:1;height:4px;border-radius:2px;background:var(--line);transition:background .2s}
-.steps b.on{background:var(--red)}
-.stepnum{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700;margin:0 0 6px}
+/* traço trêmulo, como caneta no papel */
+.rabisco{position:absolute;width:0;height:0;overflow:hidden}
+.box{border:2.2px solid var(--tinta);border-radius:16px;padding:20px 22px;background:rgba(255,253,249,.82);filter:url(#tremido)}
+.box.fina{border-width:1.8px}
+.box.petroleo{border-color:var(--petroleo)}
 
-h1{font-size:31px;line-height:1.18;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
-h2{font-size:23px;line-height:1.25;margin:0 0 10px;font-weight:700}
-h3{font-size:15px;margin:26px 0 10px;font-weight:700}
-p{margin:0 0 14px}
-.lead{color:var(--mut);font-size:15px}
+.marca{background:linear-gradient(var(--amber),var(--amber));background-size:100% 62%;background-position:0 72%;background-repeat:no-repeat;padding:0 4px}
+.mao{font-family:'Caveat',cursive;font-weight:600;line-height:1.25}
+.kicker{font-family:'Caveat',cursive;font-weight:600;font-size:25px;color:var(--amber);margin:0 0 2px}
+.kicker.pet{color:var(--petroleo)}
+.kicker.red{color:var(--vermelho)}
+.assina{font-family:'Caveat',cursive;font-size:26px;color:var(--leve);text-align:right;margin-top:30px}
+
+h1{font-size:40px;line-height:1.1;margin:0 0 16px;font-weight:700;letter-spacing:-.015em}
+h2{font-size:29px;line-height:1.15;margin:0 0 10px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:16px;margin:0 0 8px;font-weight:700}
+.pt{color:var(--vermelho)}
+p{margin:0 0 15px}
+.lead{color:var(--grafite);font-size:15.5px}
+.mini{font-size:13px;color:var(--leve)}
+
 .sec{display:none}
 .sec.on{display:block}
 
-label{display:block;font-size:13.5px;font-weight:500;margin:16px 0 5px}
-label em{font-style:normal;color:var(--red)}
+.trilha{display:flex;gap:7px;margin:0 0 26px}
+.trilha b{flex:1;height:5px;border-radius:3px;background:#E4DFD6}
+.trilha b.on{background:var(--tinta)}
+
+/* tela 1 */
+.capa{display:grid;grid-template-columns:1fr 210px;gap:26px;align-items:start}
+@media(max-width:700px){.capa{grid-template-columns:1fr}.capa svg.spot{display:none}}
+.exemplos{margin:16px 0 6px;padding:0;list-style:none}
+.exemplos li{position:relative;padding-left:26px;margin:8px 0;font-size:15.5px}
+.exemplos li:before{content:"";position:absolute;left:6px;top:9px;width:7px;height:7px;background:var(--amber);border-radius:50%}
+
+.tabela{display:grid;gap:10px;margin:8px 0 4px}
+.linha{display:flex;align-items:center;gap:14px;padding:13px 18px}
+.linha b{font-size:17px;min-width:76px}
+.linha .v{margin-left:auto;text-align:right}
+.linha .v strong{font-size:20px;display:block;line-height:1.1}
+.linha .v span{font-size:12.5px;color:var(--leve)}
+
+.num{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;
+  border:2px solid var(--amber);border-radius:50%;font-size:13px;font-weight:700;flex:0 0 27px;filter:url(#tremido)}
+.passo{display:flex;gap:13px;align-items:flex-start;margin:13px 0}
+.passo b{display:block;font-size:15.5px}
+.passo span{font-size:13.5px;color:var(--leve)}
+
+/* formulário */
+label{display:block;font-size:13.5px;font-weight:600;margin:17px 0 5px}
+label em{font-style:normal;color:var(--vermelho)}
 input[type=text],input[type=email],input[type=tel],textarea,select{
-  width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:7px;
-  font-family:inherit;font-size:15px;color:var(--txt);background:#fff}
-input:focus,textarea:focus{outline:2px solid var(--red);outline-offset:-1px;border-color:var(--red)}
+  width:100%;padding:11px 13px;border:2px solid #DCD6CC;border-radius:10px;background:#FFFDF9;
+  font-family:inherit;font-size:15px;color:var(--tinta)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--tinta)}
 textarea{min-height:96px;resize:vertical}
-.hint{font-size:12.5px;color:var(--mut);margin:5px 0 0}
+.hint{font-size:12.5px;color:var(--leve);margin:5px 0 0}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.quad{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:620px){.duo,.quad{grid-template-columns:1fr}}
+@media(max-width:700px){.duo{grid-template-columns:1fr}}
 
-.btn{appearance:none;border:0;border-radius:26px;padding:14px 30px;font-family:inherit;
-  font-size:15px;font-weight:700;cursor:pointer;background:var(--red);color:#fff}
-.btn:hover{background:var(--dred)}
-.btn.ghost{background:transparent;color:var(--mut);padding-left:6px}
-.btn.yellow{background:var(--yellow);color:#000}
-.nav{display:flex;align-items:center;justify-content:space-between;margin-top:32px;gap:12px}
-
-.card{background:var(--gray);border-radius:12px;padding:20px 22px;margin:18px 0}
-.card.dark{background:#111;color:#fff}
-.card.red{background:var(--red);color:#fff}
-.card.blue{background:var(--blue);color:#fff}
-.card h4{margin:0 0 6px;font-size:15px;font-weight:700}
-.card p{margin:0;font-size:13.5px}
-.card.dark p,.card.red p{color:#F3DADA}
-.card.blue p{color:#CBD8DE}
-
-.how{display:flex;gap:14px;align-items:flex-start;margin:14px 0}
-.how .n{flex:0 0 30px;height:30px;border-radius:50%;background:var(--red);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
-.how div b{display:block;font-size:15px}
-.how div span{font-size:13.5px;color:var(--mut)}
-.nota{font-size:13px;color:var(--mut);border-left:3px solid var(--red);padding:2px 0 2px 12px;margin:22px 0}
-.nota b{color:var(--txt)}
-
-.prices{display:grid;gap:10px;margin:14px 0 4px}
-.price{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:10px;
-  padding:14px 16px;cursor:pointer;background:#fff}
-.price:hover{border-color:#bbb}
-.price.sel{border-color:var(--red);border-width:2px;padding:13px 15px}
-.price input{accent-color:var(--red);width:18px;height:18px}
-.price b{font-size:16px}
-.price .val{margin-left:auto;text-align:right}
-.price .val strong{font-size:19px;display:block}
-.price .val span{font-size:12px;color:var(--mut)}
+.btn{appearance:none;border:2.2px solid var(--tinta);border-radius:30px;padding:13px 30px;
+  font-family:inherit;font-size:15.5px;font-weight:700;cursor:pointer;background:var(--amber);color:var(--tinta);filter:url(#tremido)}
+.btn:hover{background:#FFC15A}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--leve);padding-left:4px;filter:none}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-top:30px;gap:12px}
 
 .pixbox{display:none;margin-top:18px}
 .pixbox.on{display:block}
-.pixgrid{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:start}
-@media(max-width:620px){.pixgrid{grid-template-columns:1fr}}
-.pixgrid img{width:150px;height:150px;border-radius:8px;border:1px solid var(--line)}
+.pixgrid{display:grid;grid-template-columns:154px 1fr;gap:18px;align-items:start}
+@media(max-width:700px){.pixgrid{grid-template-columns:1fr}}
+.pixgrid img{width:154px;height:154px;border:2px solid var(--tinta);border-radius:10px;background:#fff}
 .copia{font-family:ui-monospace,Menlo,monospace;font-size:11px;word-break:break-all;
-  background:#fff;border:1px solid var(--line);border-radius:7px;padding:10px;color:#555;max-height:88px;overflow:auto}
+  background:#FFFDF9;border:1.5px solid #DCD6CC;border-radius:8px;padding:10px;color:#5A5A5A;max-height:86px;overflow:auto}
 
-.file{border:1.5px dashed #CFCFCF;border-radius:10px;padding:22px;text-align:center;background:#FAFAFA}
-.file input{font-size:13px}
-.filelist{font-size:13px;color:var(--mut);margin-top:8px}
-
-.check{display:flex;gap:10px;align-items:flex-start;margin:12px 0;font-size:13.5px}
-.check input{margin-top:3px;accent-color:var(--red);width:17px;height:17px;flex:0 0 auto}
-.err{color:var(--red);font-size:13px;font-weight:500;margin-top:10px;display:none}
+.file{border:2px dashed #CFC8BC;border-radius:12px;padding:20px;text-align:center;background:rgba(255,253,249,.7)}
+.check{display:flex;gap:10px;align-items:flex-start;margin:13px 0;font-size:13.5px}
+.check input{margin-top:3px;accent-color:var(--vermelho);width:17px;height:17px;flex:0 0 auto}
+.err{color:var(--vermelho);font-size:13.5px;font-weight:600;margin-top:10px;display:none}
 .err.on{display:block}
 
-.done{text-align:center;padding:26px 0 10px}
-.done .mark{width:62px;height:62px;border-radius:50%;background:var(--red);color:#fff;font-size:30px;
-  display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
-footer{border-top:1px solid var(--line);margin-top:44px;padding-top:16px;font-size:12px;color:var(--mut)}
-.tag{display:inline-block;background:var(--gray);border-radius:20px;padding:5px 13px;font-size:12px;
-  font-weight:500;color:#444;margin:0 6px 6px 0}
+.feito{text-align:center;padding:20px 0 6px}
+.feito .ok{width:64px;height:64px;margin:0 auto 16px;border:2.5px solid var(--tinta);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:30px;filter:url(#tremido);background:var(--amber)}
+footer{border-top:1.5px solid #E0DAD0;margin-top:40px;padding-top:15px;font-size:12px;color:var(--leve)}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <div class="brand">
-      <img src="data:image/png;base64,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" alt="LI.MA">
-      <span>LI.MA<small>Consultoria de Negócios &amp; Marketing</small></span>
-    </div>
-  </div>
-  <div class="road"><i style="bottom:18px"></i><i style="bottom:14px"></i><i style="bottom:10px"></i><i style="bottom:6px"></i><i style="bottom:2px"></i></div>
-</header>
+<svg class="rabisco"><filter id="tremido">
+  <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="3" seed="7" result="n"/>
+  <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+</filter></svg>
 
 <div class="wrap">
-  <div class="steps" id="steps">
-    <b class="on"></b><b></b><b></b><b></b>
-  </div>
 
-  <!-- ===== TELA 1 ===== -->
+  <div class="trilha" id="trilha"><b class="on"></b><b></b><b></b><b></b><b></b></div>
+
+  <!-- ===== TELA 1 · o convite ===== -->
   <section class="sec on" id="s1">
-    <p class="stepnum">Consultoria Express</p>
-    <h1>Qual o problema?</h1>
-    <p class="lead">Às vezes o que trava é uma coisa só: a campanha de Natal que precisa sair,
-    aquele produto ou serviço parado que parece não vender, o processo de entregas que empacou.
-    Não precisa de um contrato de meses. Precisa de uma orientação boa e rápida.</p>
-
-    <h3>Como funciona:</h3>
-    <div class="how"><div class="n">1</div><div><b>Preenche rapidinho aqui</b></div></div>
-    <div class="how"><div class="n">2</div><div><b>Escolhe entre 1 e 3 horas para a consultoria</b></div></div>
-    <div class="how"><div class="n">3</div><div><b>Faz o pagamento por Pix e envia o comprovante</b></div></div>
-    <div class="how"><div class="n">4</div><div><b>Marca o melhor dia e horário para você direto na minha agenda</b></div></div>
-    <div class="how"><div class="n">5</div><div><b>Eu confirmo com você</b><span>Depois que você agenda, eu entro em contato só para confirmar.</span></div></div>
-    <div class="how"><div class="n">6</div><div><b>Acontece a consultoria online</b></div></div>
-    <div class="how"><div class="n">7</div><div><b>Você recebe um PDF com o resumo de tudo o que conversamos</b></div></div>
-
-    <p class="nota"><b>Aqui eu não faço auditoria.</b> A orientação parte do que você me contar neste
-    questionário e na conversa — é isso que deixa a Express caber em uma semana.</p>
-
-    <div style="margin:18px 0">
-      <span class="tag">Reuniões 100% online</span>
-      <span class="tag">Tudo na mesma semana</span>
-      <span class="tag">Um problema por vez</span>
+    <div class="capa">
+      <div>
+        <p class="kicker">quando a dor é uma só</p>
+        <h1>Nem toda dor precisa de um contrato de meses<span class="pt">.</span></h1>
+        <p class="lead">Às vezes o que trava o seu negócio não é grande. É uma coisa só, bem específica,
+        que precisa de <span class="marca">uma orientação boa e rápida</span> — e não de um projeto de três meses.</p>
+        <ul class="exemplos">
+          <li>A campanha de Natal que precisa sair e ninguém sabe por onde começar</li>
+          <li>Aquele produto ou serviço parado, que parece não vender</li>
+          <li>O processo de entregas que empacou e ninguém destrava</li>
+        </ul>
+      </div>
+      <svg class="spot" viewBox="0 0 200 240" width="200" height="240" fill="none" filter="url(#tremido)">
+        <rect x="26" y="30" width="148" height="186" rx="12" stroke="#141414" stroke-width="3"/>
+        <rect x="76" y="16" width="48" height="24" rx="7" stroke="#141414" stroke-width="3" fill="#FAF7F2"/>
+        <circle cx="52" cy="74" r="9" stroke="#FEAD26" stroke-width="3"/>
+        <path d="M70 74h78" stroke="#141414" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="52" cy="110" r="9" stroke="#FEAD26" stroke-width="3"/>
+        <path d="M70 110h64" stroke="#141414" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="52" cy="146" r="9" stroke="#FEAD26" stroke-width="3"/>
+        <path d="M70 146h72" stroke="#141414" stroke-width="3" stroke-linecap="round"/>
+        <path d="M44 184h104" stroke="#CC0001" stroke-width="3" stroke-linecap="round"/>
+        <path d="M44 196h72" stroke="#B9B4AC" stroke-width="3" stroke-linecap="round"/>
+      </svg>
     </div>
 
-    <div class="nav"><span></span><button class="btn" onclick="go(2)">Quero começar</button></div>
+    <div class="box" style="margin:22px 0 6px">
+      <p class="kicker pet" style="margin-bottom:6px">o que isso custa</p>
+      <div class="tabela">
+        <div class="linha" style="border-bottom:1.5px solid #E6E0D6"><b>3 horas</b>
+          <span class="v"><strong>R$ 600</strong><span>R$ 200 cada</span></span></div>
+        <div class="linha" style="border-bottom:1.5px solid #E6E0D6"><b>2 horas</b>
+          <span class="v"><strong>R$ 500</strong><span>R$ 250 cada</span></span></div>
+        <div class="linha"><b>1 hora</b>
+          <span class="v"><strong>R$ 300</strong><span>R$ 300 cada</span></span></div>
+      </div>
+      <p class="mini" style="margin:6px 0 0">Tudo acontece <span class="marca">dentro da mesma semana</span>, em encontros on-line de 1h a 1h30.</p>
+    </div>
+
+    <div class="box petroleo" style="margin:18px 0 4px">
+      <p class="kicker pet" style="margin-bottom:4px">o combinado desde já</p>
+      <p style="margin:0;font-size:15px;color:var(--petroleo)"><b>Aqui eu não faço auditoria.</b>
+      A orientação parte do que você me contar no questionário e na conversa. É isso que deixa a Express
+      caber em uma semana e custar menos que uma consultoria completa.</p>
+    </div>
+
+    <div class="nav"><span></span><button class="btn" onclick="go(2)">É disso que eu preciso →</button></div>
+    <p class="assina">Lia Maia</p>
   </section>
 
-  <!-- ===== TELA 2 ===== -->
+  <!-- ===== TELA 2 · como funciona ===== -->
   <section class="sec" id="s2">
-    <p class="stepnum">Etapa 1 de 3</p>
-    <h2>Para eu saber com quem estou falando</h2>
-    <p class="lead">Os campos com <em style="font-style:normal;color:var(--red)">*</em> são obrigatórios. O resto ajuda, mas fica a seu critério.</p>
+    <p class="kicker">do oi ao plano na sua mão</p>
+    <h2>Como funciona<span class="pt">:</span></h2>
+    <div class="box" style="margin-top:18px">
+      <div class="passo"><span class="num">1</span><div><b>Preenche rapidinho aqui</b></div></div>
+      <div class="passo"><span class="num">2</span><div><b>Escolhe entre 1 e 3 horas para a consultoria</b></div></div>
+      <div class="passo"><span class="num">3</span><div><b>Faz o pagamento por Pix e envia o comprovante</b></div></div>
+      <div class="passo"><span class="num">4</span><div><b>Marca o melhor dia e horário para você direto na minha agenda</b></div></div>
+      <div class="passo"><span class="num">5</span><div><b>Eu confirmo com você</b><span>Depois que você agenda, eu entro em contato só para confirmar.</span></div></div>
+      <div class="passo"><span class="num">6</span><div><b>Acontece a consultoria on-line</b></div></div>
+      <div class="passo"><span class="num">7</span><div><b>Você recebe um PDF com o resumo de tudo o que conversamos</b></div></div>
+    </div>
+    <div class="nav"><button class="btn ghost" onclick="go(1)">← Voltar</button><button class="btn" onclick="go(3)">Começar</button></div>
+  </section>
+
+  <!-- ===== TELA 3 · quem é você ===== -->
+  <section class="sec" id="s3">
+    <p class="kicker pet">etapa 1 de 3</p>
+    <h2>Para eu saber com quem estou falando<span class="pt">.</span></h2>
+    <p class="lead">Os campos com <em style="font-style:normal;color:var(--vermelho)">*</em> são obrigatórios. O resto ajuda, mas fica a seu critério.</p>
 
     <label>Nome completo <em>*</em></label><input type="text" id="nome">
     <div class="duo">
@@ -179,35 +218,32 @@ footer{border-top:1px solid var(--line);margin-top:44px;padding-top:16px;font-si
     </div>
     <label>Cidade e estado</label><input type="text" id="cidade" placeholder="São Paulo, SP">
 
-    <h3>Onde eu encontro você e a sua marca</h3>
-    <div class="quad">
+    <h3 style="margin-top:26px">Onde eu encontro você e a sua marca</h3>
+    <div class="duo">
       <div><label>Site</label><input type="text" id="site"></div>
       <div><label>LinkedIn</label><input type="text" id="li"></div>
       <div><label>Instagram</label><input type="text" id="ig"></div>
       <div><label>Facebook</label><input type="text" id="fb"></div>
-      <div><label>TikTok</label><input type="text" id="tt"></div>
     </div>
+    <label>TikTok</label><input type="text" id="tt">
 
-    <p class="err" id="e2">Preencha nome, e-mail, WhatsApp, área e nível para continuar.</p>
-    <div class="nav"><button class="btn ghost" onclick="go(1)">← Voltar</button><button class="btn" onclick="val2()">Avançar</button></div>
+    <p class="err" id="e3">Preencha nome, e-mail, WhatsApp, área e nível para continuar.</p>
+    <div class="nav"><button class="btn ghost" onclick="go(2)">← Voltar</button><button class="btn" onclick="val3()">Avançar</button></div>
   </section>
 
-  <!-- ===== TELA 3 ===== -->
-  <section class="sec" id="s3">
-    <p class="stepnum">Etapa 2 de 3</p>
-    <h2>O negócio e o problema</h2>
+  <!-- ===== TELA 4 · o problema ===== -->
+  <section class="sec" id="s4">
+    <p class="kicker pet">etapa 2 de 3</p>
+    <h2>O negócio e o problema<span class="pt">.</span></h2>
     <p class="lead">Quanto mais concreto você for aqui, menos tempo a gente gasta na reunião entendendo o cenário
     — e mais tempo sobra para resolver.</p>
 
     <label>Faça uma breve descrição da sua empresa <em>*</em></label>
     <textarea id="empresa" placeholder="O que vocês fazem, tamanho do time, há quanto tempo existe."></textarea>
-
     <label>O que o seu produto ou serviço entrega, faz ou resolve para o cliente? <em>*</em></label>
     <textarea id="produto"></textarea>
-
     <label>Qual problema você tem hoje e precisa da minha ajuda? <em>*</em></label>
     <textarea id="problema" placeholder="Um problema por vez. Se forem vários, escolha o que mais dói."></textarea>
-
     <label>O que você já tentou até agora?</label>
     <textarea id="tentou" style="min-height:70px" placeholder="Assim eu não sugiro algo que já não funcionou aí."></textarea>
 
@@ -219,95 +255,95 @@ footer{border-top:1px solid var(--line);margin-top:44px;padding-top:16px;font-si
       <div><label>Hoje quem cuida do marketing?</label>
         <select id="quem"><option value="">Selecione</option><option>Ninguém, por enquanto</option>
         <option>Eu mesmo</option><option>Alguém interno</option><option>Freelancer</option><option>Agência</option></select></div>
+      <div><label>Quem participa da conversa além de você?</label>
+        <input type="text" id="participa" placeholder="Nome e função"></div>
     </div>
 
-    <label>Quem participa da conversa além de você?</label>
-    <input type="text" id="participa" placeholder="Nome e função de quem mais entra na reunião">
-
-    <h3>Quer me mandar alguma coisa?</h3>
+    <h3 style="margin-top:26px">Quer me mandar alguma coisa?</h3>
     <div class="file">
       <input type="file" id="anexos" multiple accept=".jpg,.jpeg,.png,.pdf">
       <p class="hint">Imagens e PDFs, até 10 MB no total. Relatórios, prints, tabela de preços, o que ajudar.</p>
-      <div class="filelist" id="lista"></div>
+      <div class="mini" id="lista"></div>
     </div>
 
-    <p class="err" id="e3">Os três primeiros campos são obrigatórios.</p>
-    <div class="nav"><button class="btn ghost" onclick="go(2)">← Voltar</button><button class="btn" onclick="val3()">Avançar</button></div>
+    <p class="err" id="e4">Os três primeiros campos são obrigatórios.</p>
+    <div class="nav"><button class="btn ghost" onclick="go(3)">← Voltar</button><button class="btn" onclick="val4()">Avançar</button></div>
   </section>
 
-  <!-- ===== TELA 4 ===== -->
-  <section class="sec" id="s4">
-    <p class="stepnum">Etapa 3 de 3</p>
-    <h2>Horas e pagamento</h2>
+  <!-- ===== TELA 5 · horas e pagamento ===== -->
+  <section class="sec" id="s5">
+    <p class="kicker pet">etapa 3 de 3</p>
+    <h2>Horas e pagamento<span class="pt">.</span></h2>
     <p class="lead">Quanto mais horas, menor o valor de cada uma. Escolha pensando no tamanho do problema —
     e lembre que tudo acontece dentro da mesma semana.</p>
 
-    <div class="prices">
-      <label class="price" onclick="pick(3)"><input type="radio" name="h" value="3">
-        <b>3 horas</b><span class="val"><strong>R$ 600</strong><span>R$ 200 cada</span></span></label>
-      <label class="price" onclick="pick(2)"><input type="radio" name="h" value="2">
-        <b>2 horas</b><span class="val"><strong>R$ 500</strong><span>R$ 250 cada</span></span></label>
-      <label class="price" onclick="pick(1)"><input type="radio" name="h" value="1">
-        <b>1 hora</b><span class="val"><strong>R$ 300</strong><span>R$ 300</span></span></label>
+    <div class="tabela" style="margin-top:16px">
+      <label class="linha box" style="cursor:pointer" onclick="pick(3)">
+        <input type="radio" name="h" value="3" style="width:18px;height:18px;accent-color:#CC0001">
+        <b>3 horas</b><span class="v"><strong>R$ 600</strong><span>R$ 200 cada</span></span></label>
+      <label class="linha box" style="cursor:pointer" onclick="pick(2)">
+        <input type="radio" name="h" value="2" style="width:18px;height:18px;accent-color:#CC0001">
+        <b>2 horas</b><span class="v"><strong>R$ 500</strong><span>R$ 250 cada</span></span></label>
+      <label class="linha box" style="cursor:pointer" onclick="pick(1)">
+        <input type="radio" name="h" value="1" style="width:18px;height:18px;accent-color:#CC0001">
+        <b>1 hora</b><span class="v"><strong>R$ 300</strong><span>R$ 300 cada</span></span></label>
     </div>
 
-    <div class="card">
-      <h4>Se passar das horas contratadas</h4>
-      <p id="exced">O tempo excedente é cobrado no mesmo valor da hora do seu pacote, proporcional aos minutos usados.
-      O controle é feito numa planilha de horas que eu compartilho com você, com data, início e fim de cada atividade.</p>
-    </div>
+    <p class="mini" id="exced" style="margin-top:12px">O tempo que passar das horas contratadas é cobrado no mesmo
+    valor da hora do seu pacote, proporcional aos minutos usados. O controle é feito numa planilha de horas
+    que eu compartilho com você, com data, início e fim de cada atividade.</p>
 
     <div class="pixbox" id="pix">
-      <h3>Pagamento por Pix</h3>
+      <h3 style="margin-top:24px">Pagamento por Pix</h3>
       <div class="pixgrid">
         <img id="qr" src="" alt="QR Code Pix">
         <div>
-          <p style="font-size:13.5px;margin-bottom:6px"><b id="pixvalor"></b> · Otilia Maia Duarte Amaral · Nubank</p>
+          <p class="mini" style="margin-bottom:7px"><b id="pixvalor" style="font-size:15px;color:var(--tinta)"></b><br>Otilia Maia Duarte Amaral · Nubank</p>
           <div class="copia" id="copia"></div>
-          <button class="btn yellow" style="margin-top:10px;padding:9px 18px;font-size:13px" onclick="copiar()">Copiar código Pix</button>
-          <span id="copiado" style="font-size:12.5px;color:var(--mut);margin-left:8px"></span>
+          <button class="btn" style="margin-top:11px;padding:9px 20px;font-size:13.5px" onclick="copiar()">Copiar código Pix</button>
+          <span id="copiado" class="mao" style="font-size:20px;color:var(--petroleo);margin-left:10px"></span>
         </div>
       </div>
-
-      <h3>Comprovante</h3>
+      <h3 style="margin-top:24px">Comprovante</h3>
       <div class="file">
         <input type="file" id="comprovante" accept=".jpg,.jpeg,.png,.pdf">
         <p class="hint">Imagem ou PDF do comprovante. Sem ele eu não consigo liberar a agenda.</p>
       </div>
     </div>
 
-    <h3>Antes de seguir, três combinados</h3>
+    <h3 style="margin-top:26px">Antes de seguir, três combinados</h3>
     <label class="check"><input type="checkbox" id="c1">
-      <span>As reuniões são online, de 1h a 1h30 cada, e acontecem todas dentro da mesma semana.</span></label>
+      <span>As reuniões são on-line, de 1h a 1h30 cada, e acontecem todas dentro da mesma semana.</span></label>
     <label class="check"><input type="checkbox" id="c2">
       <span>Desmarcar com menos de 2 horas de antecedência conta como reunião realizada. O aviso precisa ser por e-mail,
       para <b>liamaia.mkt@gmail.com</b>.</span></label>
     <label class="check"><input type="checkbox" id="c3">
-      <span>Entendi que aqui não há auditoria: a orientação parte do que eu informei neste questionário e na conversa.</span></label>
+      <span>Entendi que aqui não há auditoria: a orientação parte do que eu informei no questionário e na conversa.</span></label>
 
-    <p class="err" id="e4">Escolha as horas, anexe o comprovante e marque os três combinados.</p>
-    <div class="nav"><button class="btn ghost" onclick="go(3)">← Voltar</button><button class="btn" onclick="val4()">Enviar e agendar</button></div>
+    <p class="err" id="e5">Escolha as horas, anexe o comprovante e marque os três combinados.</p>
+    <div class="nav"><button class="btn ghost" onclick="go(4)">← Voltar</button><button class="btn" onclick="val5()">Enviar e agendar</button></div>
   </section>
 
-  <!-- ===== TELA 5 ===== -->
-  <section class="sec" id="s5">
-    <div class="done">
-      <div class="mark">✓</div>
-      <h2>Recebi tudo. Agora é marcar.</h2>
-      <p class="lead" style="max-width:520px;margin:0 auto 8px">Escolha os horários direto na minha agenda.
+  <!-- ===== TELA 6 · pronto ===== -->
+  <section class="sec" id="s6">
+    <div class="feito">
+      <div class="ok">✓</div>
+      <h2>Recebi tudo. Agora é marcar<span class="pt">.</span></h2>
+      <p class="lead" style="max-width:520px;margin:0 auto 6px">Escolha os horários direto na minha agenda.
       Marque <b id="qtd"></b> dentro da mesma semana.</p>
-      <p style="margin:20px 0"><a href="https://calendar.app.google/NWCk7uyacPiDfDzbA" target="_blank" class="btn" style="text-decoration:none;display:inline-block">Abrir a agenda e marcar</a></p>
+      <p style="margin:22px 0"><a href="https://calendar.app.google/NWCk7uyacPiDfDzbA" target="_blank" class="btn" style="text-decoration:none;display:inline-block">Abrir a agenda e marcar</a></p>
     </div>
-    <div class="card blue">
-      <h4>O que acontece agora</h4>
-      <p>Depois que você marcar, eu entro em contato só para confirmar a reunião. Você também recebe por e-mail
-      um resumo do que contratou. Se precisar mudar alguma coisa, é só responder aquele e-mail.</p>
+    <div class="box petroleo">
+      <p class="kicker pet" style="margin-bottom:4px">o que acontece agora</p>
+      <p style="margin:0;font-size:15px;color:var(--petroleo)">Depois que você marcar, eu entro em contato só para confirmar
+      a reunião. Você também recebe por e-mail um resumo do que contratou. Se precisar mudar alguma coisa, é só responder aquele e-mail.</p>
     </div>
-    <div class="card">
-      <h4>Antes da nossa conversa</h4>
-      <p>Eu leio tudo o que você escreveu aqui e chego com perguntas prontas. Se lembrar de algo importante
-      no meio do caminho, me manda por e-mail que eu incluo na leitura.</p>
+    <div class="box" style="margin-top:16px">
+      <p class="kicker" style="margin-bottom:4px">antes da nossa conversa</p>
+      <p style="margin:0;font-size:15px">Eu leio tudo o que você escreveu aqui e chego com perguntas prontas.
+      Se lembrar de algo importante no meio do caminho, me manda por e-mail que eu incluo na leitura.</p>
     </div>
+    <p class="assina">Lia Maia</p>
   </section>
 
   <footer>
@@ -325,57 +361,56 @@ var HORA = {1:'R$ 300,00 a hora e R$ 5,00 o minuto', 2:'R$ 250,00 a hora e R$ 4,
 var escolhido = 0;
 
 function go(n){
-  ['s1','s2','s3','s4','s5'].forEach(function(id, i){
-    document.getElementById(id).classList.toggle('on', i === n-1);
-  });
-  var b = document.querySelectorAll('#steps b');
-  for (var i=0;i<b.length;i++) b[i].classList.toggle('on', i <= n-2 || n===1);
+  var ids = ['s1','s2','s3','s4','s5','s6'];
+  for (var i=0;i<ids.length;i++){
+    document.getElementById(ids[i]).classList.toggle('on', i === n-1);
+  }
+  var b = document.querySelectorAll('#trilha b');
+  for (var j=0;j<b.length;j++){ b[j].classList.toggle('on', j <= n-2 || n===1); }
   window.scrollTo({top:0, behavior:'smooth'});
 }
-function limpa(id){ document.getElementById(id).classList.remove('on'); }
 function mostra(id){ document.getElementById(id).classList.add('on'); }
+function limpa(id){ document.getElementById(id).classList.remove('on'); }
 
-function val2(){
-  var ok = ['nome','email','zap','area','nivel'].every(function(id){ return document.getElementById(id).value.trim() !== ''; });
-  var mail = document.getElementById('email').value;
-  if (!ok || mail.indexOf('@') < 1) { mostra('e2'); return; }
-  limpa('e2'); go(3);
-}
 function val3(){
-  var ok = ['empresa','produto','problema'].every(function(id){ return document.getElementById(id).value.trim() !== ''; });
-  if (!ok) { mostra('e3'); return; }
+  var ids = ['nome','email','zap','area','nivel'], ok = true;
+  for (var i=0;i<ids.length;i++){ if (document.getElementById(ids[i]).value.trim() === '') ok = false; }
+  if (document.getElementById('email').value.indexOf('@') < 1) ok = false;
+  if (!ok){ mostra('e3'); return; }
   limpa('e3'); go(4);
+}
+function val4(){
+  var ids = ['empresa','produto','problema'], ok = true;
+  for (var i=0;i<ids.length;i++){ if (document.getElementById(ids[i]).value.trim() === '') ok = false; }
+  if (!ok){ mostra('e4'); return; }
+  limpa('e4'); go(5);
 }
 function pick(h){
   escolhido = h;
-  document.querySelectorAll('.price').forEach(function(p){ p.classList.remove('sel'); });
-  document.querySelectorAll('.price')[3-h].classList.add('sel');
-  document.querySelectorAll('.price input')[3-h].checked = true;
   var v = VAL[h];
   document.getElementById('qr').src = 'data:image/png;base64,' + QR[v];
   document.getElementById('copia').textContent = PIX[v];
   document.getElementById('pixvalor').textContent = 'R$ ' + v + ',00';
   var dur = (h > 1) ? ('das ' + h + ' horas contratadas') : 'da 1 hora contratada';
-  document.getElementById('exced').textContent = 'No seu pacote, o tempo que passar ' + dur +
-    ' é cobrado a ' + HORA[h] +
-    '. O controle é feito numa planilha de horas que eu compartilho com você, com data, início e fim de cada atividade.';
+  document.getElementById('exced').textContent = 'No seu pacote, o tempo que passar ' + dur + ' é cobrado a ' +
+    HORA[h] + '. O controle é feito numa planilha de horas que eu compartilho com você, com data, início e fim de cada atividade.';
   document.getElementById('qtd').textContent = h === 1 ? 'um encontro' : (h === 2 ? 'dois encontros' : 'dois ou três encontros');
   mostra('pix');
 }
 function copiar(){
   if (!escolhido) return;
   navigator.clipboard.writeText(PIX[VAL[escolhido]]);
-  document.getElementById('copiado').textContent = 'copiado';
+  document.getElementById('copiado').textContent = 'copiado!';
   setTimeout(function(){ document.getElementById('copiado').textContent = ''; }, 2500);
 }
-function val4(){
+function val5(){
   var comp = document.getElementById('comprovante');
   var ok = escolhido > 0 && comp.files.length > 0 &&
            document.getElementById('c1').checked &&
            document.getElementById('c2').checked &&
            document.getElementById('c3').checked;
-  if (!ok) { mostra('e4'); return; }
-  limpa('e4'); go(5);
+  if (!ok){ mostra('e5'); return; }
+  limpa('e5'); go(6);
 }
 document.getElementById('anexos').addEventListener('change', function(e){
   var n = e.target.files.length, mb = 0;
