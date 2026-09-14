@@ -375,7 +375,7 @@ body.vitrine footer{border-top-color:rgba(0,0,0,.28);color:#FBE4E4}
       <span>Entendi que aqui não há auditoria: a orientação parte do que eu informei no questionário e na conversa.</span></label>
 
     <p class="err" id="e6">Escolha as horas, anexe o comprovante e marque os três combinados.</p>
-    <div class="nav"><button class="btn ghost" onclick="go(5)">← Voltar</button><button class="btn" onclick="val6()">Enviar e agendar</button></div>
+    <div class="nav"><button class="btn ghost" onclick="go(5)">← Voltar</button><button class="btn" id="enviar" onclick="val6()">Enviar e agendar</button></div>
   </section>
 
   <!-- ===== TELA 7 · pronto ===== -->
@@ -413,6 +413,52 @@ var VAL = {1:300, 2:500, 3:600};
 var HORA = {1:'R$ 300,00 a hora e R$ 5,00 o minuto', 2:'R$ 250,00 a hora e R$ 4,17 o minuto', 3:'R$ 200,00 a hora e R$ 3,33 o minuto'};
 var escolhido = 0;
 document.body.classList.add('vitrine');
+
+/* cole aqui o endereço que o Apps Script gera ao publicar */
+var ENDPOINT = 'https://script.google.com/macros/s/AKfycbz2EB2nXDM5Vj1SGqGzPy5JDCR88AlZrKASUnl1mvwJt0I8RJMwsY7C2pBLQL3gkXcLjQ/exec';
+
+function lerArquivo(f){
+  return new Promise(function(ok, falhou){
+    var r = new FileReader();
+    r.onload = function(){ ok({ nome: f.name, tipo: f.type, dados: r.result.split(',')[1] }); };
+    r.onerror = falhou;
+    r.readAsDataURL(f);
+  });
+}
+function campo(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+function montarEnvio(){
+  var ids = ['nome','email','zap','area','nivel','cidade','site','li','ig','fb','tt',
+             'empresa','produto','problema','tentou','prazo','time','quem','participa'];
+  var d = { horas: escolhido };
+  for (var i=0;i<ids.length;i++){ d[ids[i]] = campo(ids[i]); }
+  return d;
+}
+
+function enviar(){
+  var botao = document.getElementById('enviar');
+  botao.disabled = true; botao.textContent = 'Enviando…';
+  var d = montarEnvio();
+  var anexos = Array.prototype.slice.call(document.getElementById('anexos').files);
+  var comp = document.getElementById('comprovante').files[0];
+  Promise.all(anexos.map(lerArquivo).concat(comp ? [lerArquivo(comp)] : []))
+    .then(function(arqs){
+      if (comp) { d.comprovante = arqs.pop(); }
+      d.anexos = arqs;
+      return fetch(ENDPOINT, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(d)
+      });
+    })
+    .then(function(){ go(7); })
+    .catch(function(){
+      botao.disabled = false; botao.textContent = 'Enviar e agendar';
+      document.getElementById('e6').textContent =
+        'Não consegui enviar agora. Confira a internet e tente de novo — se insistir, me chame no WhatsApp.';
+      mostra('e6');
+    });
+}
 
 function go(n){
   var ids = ['s1','s2','s3','s4','s5','s6','s7'];
@@ -465,13 +511,14 @@ function copiar(){
   setTimeout(function(){ document.getElementById('copiado').textContent = ''; }, 2500);
 }
 function val6(){
+  document.getElementById('e6').textContent = 'Escolha as horas, anexe o comprovante e marque os três combinados.';
   var comp = document.getElementById('comprovante');
   var ok = escolhido > 0 && comp.files.length > 0 &&
            document.getElementById('c1').checked &&
            document.getElementById('c2').checked &&
            document.getElementById('c3').checked;
   if (!ok){ mostra('e6'); return; }
-  limpa('e6'); go(7);
+  limpa('e6'); enviar();
 }
 document.getElementById('anexos').addEventListener('change', function(e){
   var n = e.target.files.length, mb = 0;
