@@ -35,11 +35,14 @@ body:before{content:"";position:fixed;left:46px;top:0;bottom:0;width:1.5px;backg
 .box{border:2.2px solid var(--tinta);border-radius:16px;padding:20px 22px;background:rgba(255,253,249,.82);filter:url(#tremido)}
 .box.fina{border-width:1.8px}
 .box.petroleo{border-color:var(--petroleo)}
+.box.vermelha{border-color:var(--vermelho)}
+.linha.sel{border-color:var(--vermelho) !important;border-width:3px}
 
 .marca{background:linear-gradient(var(--amber),var(--amber));background-size:100% 62%;background-position:0 72%;background-repeat:no-repeat;padding:0 4px}
 .mao{font-family:'Caveat',cursive;font-weight:600;line-height:1.25}
-.kicker{font-family:'Caveat',cursive;font-weight:600;font-size:25px;color:var(--amber);margin:0 0 2px}
+.kicker{font-family:'Caveat',cursive;font-weight:600;font-size:25px;color:var(--vermelho);margin:0 0 2px}
 .kicker.pet{color:var(--petroleo)}
+.kicker.amb{color:#B8790F}
 .kicker.red{color:var(--vermelho)}
 .assina{font-family:'Caveat',cursive;font-size:26px;color:var(--leve);text-align:right;margin-top:30px}
 
@@ -56,24 +59,24 @@ p{margin:0 0 15px}
 
 .trilha{display:flex;gap:7px;margin:0 0 26px}
 .trilha b{flex:1;height:5px;border-radius:3px;background:#E4DFD6}
-.trilha b.on{background:var(--tinta)}
+.trilha b.on{background:var(--vermelho)}
 
 /* tela 1 */
 .capa{display:grid;grid-template-columns:1fr 210px;gap:26px;align-items:start}
 @media(max-width:700px){.capa{grid-template-columns:1fr}.capa svg.spot{display:none}}
 .exemplos{margin:16px 0 6px;padding:0;list-style:none}
 .exemplos li{position:relative;padding-left:26px;margin:8px 0;font-size:15.5px}
-.exemplos li:before{content:"";position:absolute;left:6px;top:9px;width:7px;height:7px;background:var(--amber);border-radius:50%}
+.exemplos li:before{content:"";position:absolute;left:6px;top:9px;width:7px;height:7px;background:var(--vermelho);border-radius:50%}
 
 .tabela{display:grid;gap:10px;margin:8px 0 4px}
 .linha{display:flex;align-items:center;gap:14px;padding:13px 18px}
 .linha b{font-size:17px;min-width:76px}
 .linha .v{margin-left:auto;text-align:right}
-.linha .v strong{font-size:20px;display:block;line-height:1.1}
+.linha .v strong{font-size:22px;display:block;line-height:1.1;color:var(--vermelho)}
 .linha .v span{font-size:12.5px;color:var(--leve)}
 
 .num{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;
-  border:2px solid var(--amber);border-radius:50%;font-size:13px;font-weight:700;flex:0 0 27px;filter:url(#tremido)}
+  border:2px solid var(--vermelho);color:var(--vermelho);border-radius:50%;font-size:13px;font-weight:700;flex:0 0 27px;filter:url(#tremido)}
 .passo{display:flex;gap:13px;align-items:flex-start;margin:13px 0}
 .passo b{display:block;font-size:15.5px}
 .passo span{font-size:13.5px;color:var(--leve)}
@@ -111,8 +114,8 @@ textarea{min-height:96px;resize:vertical}
 .err.on{display:block}
 
 .feito{text-align:center;padding:20px 0 6px}
-.feito .ok{width:64px;height:64px;margin:0 auto 16px;border:2.5px solid var(--tinta);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:30px;filter:url(#tremido);background:var(--amber)}
+.feito .ok{width:64px;height:64px;margin:0 auto 16px;border:2.5px solid var(--vermelho);border-radius:50%;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:30px;filter:url(#tremido);background:var(--vermelho)}
 footer{border-top:1.5px solid #E0DAD0;margin-top:40px;padding-top:15px;font-size:12px;color:var(--leve)}
 </style>
 </head>
@@ -125,14 +128,14 @@ footer{border-top:1.5px solid #E0DAD0;margin-top:40px;padding-top:15px;font-size
 
 <div class="wrap">
 
-  <div class="trilha" id="trilha"><b class="on"></b><b></b><b></b><b></b><b></b></div>
+  <div class="trilha" id="trilha"><b class="on"></b><b></b><b></b><b></b><b></b><b></b></div>
 
-  <!-- ===== TELA 1 · o convite ===== -->
+  <!-- ===== TELA 1 · o que você ganha ===== -->
   <section class="sec on" id="s1">
     <div class="capa">
       <div>
         <p class="kicker">quando a dor é uma só</p>
-        <h1>Nem toda dor precisa de um contrato de meses<span class="pt">.</span></h1>
+        <h1>Sair da conversa sabendo o que fazer na segunda-feira<span class="pt">.</span></h1>
         <p class="lead">Às vezes o que trava o seu negócio não é grande. É uma coisa só, bem específica,
         que precisa de <span class="marca">uma orientação boa e rápida</span> — e não de um projeto de três meses.</p>
         <ul class="exemplos">
@@ -144,43 +147,67 @@ footer{border-top:1.5px solid #E0DAD0;margin-top:40px;padding-top:15px;font-size
       <svg class="spot" viewBox="0 0 200 240" width="200" height="240" fill="none" filter="url(#tremido)">
         <rect x="26" y="30" width="148" height="186" rx="12" stroke="#141414" stroke-width="3"/>
         <rect x="76" y="16" width="48" height="24" rx="7" stroke="#141414" stroke-width="3" fill="#FAF7F2"/>
-        <circle cx="52" cy="74" r="9" stroke="#FEAD26" stroke-width="3"/>
+        <circle cx="52" cy="74" r="9" stroke="#CC0001" stroke-width="3"/>
         <path d="M70 74h78" stroke="#141414" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="52" cy="110" r="9" stroke="#FEAD26" stroke-width="3"/>
+        <circle cx="52" cy="110" r="9" stroke="#CC0001" stroke-width="3"/>
         <path d="M70 110h64" stroke="#141414" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="52" cy="146" r="9" stroke="#FEAD26" stroke-width="3"/>
+        <circle cx="52" cy="146" r="9" stroke="#CC0001" stroke-width="3"/>
         <path d="M70 146h72" stroke="#141414" stroke-width="3" stroke-linecap="round"/>
         <path d="M44 184h104" stroke="#CC0001" stroke-width="3" stroke-linecap="round"/>
         <path d="M44 196h72" stroke="#B9B4AC" stroke-width="3" stroke-linecap="round"/>
       </svg>
     </div>
 
-    <div class="box" style="margin:22px 0 6px">
-      <p class="kicker pet" style="margin-bottom:6px">o que isso custa</p>
-      <div class="tabela">
-        <div class="linha" style="border-bottom:1.5px solid #E6E0D6"><b>3 horas</b>
-          <span class="v"><strong>R$ 600</strong><span>R$ 200 cada</span></span></div>
-        <div class="linha" style="border-bottom:1.5px solid #E6E0D6"><b>2 horas</b>
-          <span class="v"><strong>R$ 500</strong><span>R$ 250 cada</span></span></div>
-        <div class="linha"><b>1 hora</b>
-          <span class="v"><strong>R$ 300</strong><span>R$ 300 cada</span></span></div>
-      </div>
-      <p class="mini" style="margin:6px 0 0">Tudo acontece <span class="marca">dentro da mesma semana</span>, em encontros on-line de 1h a 1h30.</p>
+    <div class="box vermelha" style="margin:22px 0 6px">
+      <p class="kicker" style="margin-bottom:8px">o que você leva daqui</p>
+      <div class="passo"><span class="num">1</span><div><b>Uma cabeça de fora, com mais de 20 anos de estrada</b>
+        <span>Alguém que já viu esse mesmo problema em agência, startup e empresa grande.</span></div></div>
+      <div class="passo"><span class="num">2</span><div><b>Resposta em uma semana, não em três meses</b>
+        <span>Você não entra num projeto longo para resolver uma coisa só.</span></div></div>
+      <div class="passo"><span class="num">3</span><div><b>Um PDF com tudo o que a gente conversou</b>
+        <span>Para consultar depois, alinhar o time e não depender da sua memória.</span></div></div>
+      <div class="passo"><span class="num">4</span><div><b>Nenhum contrato longo, nenhuma mensalidade</b>
+        <span>Começa e termina na mesma semana. Se der certo, a gente conversa sobre o resto.</span></div></div>
     </div>
 
-    <div class="box petroleo" style="margin:18px 0 4px">
+    <p class="mao" style="font-size:27px;color:var(--petroleo);margin:22px 0 0">
+      Você não contrata um projeto. Contrata uma decisão destravada.</p>
+
+    <div class="nav"><span></span><button class="btn" onclick="go(2)">Quanto custa? →</button></div>
+    <p class="assina">Lia Maia</p>
+  </section>
+
+  <!-- ===== TELA 2 · os valores ===== -->
+  <section class="sec" id="s2">
+    <p class="kicker">sem letra miúda</p>
+    <h2>Você escolhe quantas horas<span class="pt">.</span></h2>
+    <p class="lead">Quanto mais horas você contrata, menos custa cada uma. São encontros on-line de 1h a 1h30,
+    todos <span class="marca">dentro da mesma semana</span>.</p>
+
+    <div class="tabela" style="margin-top:20px">
+      <div class="linha box"><b>3 horas</b>
+        <span class="v"><strong>R$ 200</strong><span>cada hora</span></span></div>
+      <div class="linha box"><b>2 horas</b>
+        <span class="v"><strong>R$ 250</strong><span>cada hora</span></span></div>
+      <div class="linha box"><b>1 hora</b>
+        <span class="v"><strong>R$ 300</strong><span>cada hora</span></span></div>
+    </div>
+
+    <div class="box petroleo" style="margin:22px 0 4px">
       <p class="kicker pet" style="margin-bottom:4px">o combinado desde já</p>
       <p style="margin:0;font-size:15px;color:var(--petroleo)"><b>Aqui eu não faço auditoria.</b>
       A orientação parte do que você me contar no questionário e na conversa. É isso que deixa a Express
       caber em uma semana e custar menos que uma consultoria completa.</p>
     </div>
 
-    <div class="nav"><span></span><button class="btn" onclick="go(2)">É disso que eu preciso →</button></div>
-    <p class="assina">Lia Maia</p>
+    <p class="mini">O tempo que passar das horas contratadas é cobrado no mesmo valor por hora do seu pacote,
+    proporcional aos minutos usados, com controle numa planilha que eu compartilho com você.</p>
+
+    <div class="nav"><button class="btn ghost" onclick="go(1)">← Voltar</button><button class="btn" onclick="go(3)">Como funciona →</button></div>
   </section>
 
-  <!-- ===== TELA 2 · como funciona ===== -->
-  <section class="sec" id="s2">
+  <!-- ===== TELA 3 · como funciona ===== -->
+  <section class="sec" id="s3">
     <p class="kicker">do oi ao plano na sua mão</p>
     <h2>Como funciona<span class="pt">:</span></h2>
     <div class="box" style="margin-top:18px">
@@ -192,12 +219,12 @@ footer{border-top:1.5px solid #E0DAD0;margin-top:40px;padding-top:15px;font-size
       <div class="passo"><span class="num">6</span><div><b>Acontece a consultoria on-line</b></div></div>
       <div class="passo"><span class="num">7</span><div><b>Você recebe um PDF com o resumo de tudo o que conversamos</b></div></div>
     </div>
-    <div class="nav"><button class="btn ghost" onclick="go(1)">← Voltar</button><button class="btn" onclick="go(3)">Começar</button></div>
+    <div class="nav"><button class="btn ghost" onclick="go(2)">← Voltar</button><button class="btn" onclick="go(4)">Começar</button></div>
   </section>
 
-  <!-- ===== TELA 3 · quem é você ===== -->
-  <section class="sec" id="s3">
-    <p class="kicker pet">etapa 1 de 3</p>
+  <!-- ===== TELA 4 · quem é você ===== -->
+  <section class="sec" id="s4">
+    <p class="kicker">etapa 1 de 3</p>
     <h2>Para eu saber com quem estou falando<span class="pt">.</span></h2>
     <p class="lead">Os campos com <em style="font-style:normal;color:var(--vermelho)">*</em> são obrigatórios. O resto ajuda, mas fica a seu critério.</p>
 
@@ -227,13 +254,13 @@ footer{border-top:1.5px solid #E0DAD0;margin-top:40px;padding-top:15px;font-size
     </div>
     <label>TikTok</label><input type="text" id="tt">
 
-    <p class="err" id="e3">Preencha nome, e-mail, WhatsApp, área e nível para continuar.</p>
-    <div class="nav"><button class="btn ghost" onclick="go(2)">← Voltar</button><button class="btn" onclick="val3()">Avançar</button></div>
+    <p class="err" id="e4">Preencha nome, e-mail, WhatsApp, área e nível para continuar.</p>
+    <div class="nav"><button class="btn ghost" onclick="go(3)">← Voltar</button><button class="btn" onclick="val4()">Avançar</button></div>
   </section>
 
-  <!-- ===== TELA 4 · o problema ===== -->
-  <section class="sec" id="s4">
-    <p class="kicker pet">etapa 2 de 3</p>
+  <!-- ===== TELA 5 · o problema ===== -->
+  <section class="sec" id="s5">
+    <p class="kicker">etapa 2 de 3</p>
     <h2>O negócio e o problema<span class="pt">.</span></h2>
     <p class="lead">Quanto mais concreto você for aqui, menos tempo a gente gasta na reunião entendendo o cenário
     — e mais tempo sobra para resolver.</p>
@@ -266,13 +293,13 @@ footer{border-top:1.5px solid #E0DAD0;margin-top:40px;padding-top:15px;font-size
       <div class="mini" id="lista"></div>
     </div>
 
-    <p class="err" id="e4">Os três primeiros campos são obrigatórios.</p>
+    <p class="err" id="e5">Os três primeiros campos são obrigatórios.</p>
     <div class="nav"><button class="btn ghost" onclick="go(3)">← Voltar</button><button class="btn" onclick="val4()">Avançar</button></div>
   </section>
 
-  <!-- ===== TELA 5 · horas e pagamento ===== -->
-  <section class="sec" id="s5">
-    <p class="kicker pet">etapa 3 de 3</p>
+  <!-- ===== TELA 6 · horas e pagamento ===== -->
+  <section class="sec" id="s6">
+    <p class="kicker">etapa 3 de 3</p>
     <h2>Horas e pagamento<span class="pt">.</span></h2>
     <p class="lead">Quanto mais horas, menor o valor de cada uma. Escolha pensando no tamanho do problema —
     e lembre que tudo acontece dentro da mesma semana.</p>
@@ -280,13 +307,13 @@ footer{border-top:1.5px solid #E0DAD0;margin-top:40px;padding-top:15px;font-size
     <div class="tabela" style="margin-top:16px">
       <label class="linha box" style="cursor:pointer" onclick="pick(3)">
         <input type="radio" name="h" value="3" style="width:18px;height:18px;accent-color:#CC0001">
-        <b>3 horas</b><span class="v"><strong>R$ 600</strong><span>R$ 200 cada</span></span></label>
+        <b>3 horas</b><span class="v"><strong>R$ 200</strong><span>cada hora · total R$ 600</span></span></label>
       <label class="linha box" style="cursor:pointer" onclick="pick(2)">
         <input type="radio" name="h" value="2" style="width:18px;height:18px;accent-color:#CC0001">
-        <b>2 horas</b><span class="v"><strong>R$ 500</strong><span>R$ 250 cada</span></span></label>
+        <b>2 horas</b><span class="v"><strong>R$ 250</strong><span>cada hora · total R$ 500</span></span></label>
       <label class="linha box" style="cursor:pointer" onclick="pick(1)">
         <input type="radio" name="h" value="1" style="width:18px;height:18px;accent-color:#CC0001">
-        <b>1 hora</b><span class="v"><strong>R$ 300</strong><span>R$ 300 cada</span></span></label>
+        <b>1 hora</b><span class="v"><strong>R$ 300</strong><span>cada hora · total R$ 300</span></span></label>
     </div>
 
     <p class="mini" id="exced" style="margin-top:12px">O tempo que passar das horas contratadas é cobrado no mesmo
@@ -320,12 +347,12 @@ footer{border-top:1.5px solid #E0DAD0;margin-top:40px;padding-top:15px;font-size
     <label class="check"><input type="checkbox" id="c3">
       <span>Entendi que aqui não há auditoria: a orientação parte do que eu informei no questionário e na conversa.</span></label>
 
-    <p class="err" id="e5">Escolha as horas, anexe o comprovante e marque os três combinados.</p>
-    <div class="nav"><button class="btn ghost" onclick="go(4)">← Voltar</button><button class="btn" onclick="val5()">Enviar e agendar</button></div>
+    <p class="err" id="e6">Escolha as horas, anexe o comprovante e marque os três combinados.</p>
+    <div class="nav"><button class="btn ghost" onclick="go(5)">← Voltar</button><button class="btn" onclick="val6()">Enviar e agendar</button></div>
   </section>
 
-  <!-- ===== TELA 6 · pronto ===== -->
-  <section class="sec" id="s6">
+  <!-- ===== TELA 7 · pronto ===== -->
+  <section class="sec" id="s7">
     <div class="feito">
       <div class="ok">✓</div>
       <h2>Recebi tudo. Agora é marcar<span class="pt">.</span></h2>
@@ -361,7 +388,7 @@ var HORA = {1:'R$ 300,00 a hora e R$ 5,00 o minuto', 2:'R$ 250,00 a hora e R$ 4,
 var escolhido = 0;
 
 function go(n){
-  var ids = ['s1','s2','s3','s4','s5','s6'];
+  var ids = ['s1','s2','s3','s4','s5','s6','s7'];
   for (var i=0;i<ids.length;i++){
     document.getElementById(ids[i]).classList.toggle('on', i === n-1);
   }
@@ -372,21 +399,26 @@ function go(n){
 function mostra(id){ document.getElementById(id).classList.add('on'); }
 function limpa(id){ document.getElementById(id).classList.remove('on'); }
 
-function val3(){
+function val4(){
   var ids = ['nome','email','zap','area','nivel'], ok = true;
   for (var i=0;i<ids.length;i++){ if (document.getElementById(ids[i]).value.trim() === '') ok = false; }
   if (document.getElementById('email').value.indexOf('@') < 1) ok = false;
-  if (!ok){ mostra('e3'); return; }
-  limpa('e3'); go(4);
-}
-function val4(){
-  var ids = ['empresa','produto','problema'], ok = true;
-  for (var i=0;i<ids.length;i++){ if (document.getElementById(ids[i]).value.trim() === '') ok = false; }
   if (!ok){ mostra('e4'); return; }
   limpa('e4'); go(5);
 }
+function val5(){
+  var ids = ['empresa','produto','problema'], ok = true;
+  for (var i=0;i<ids.length;i++){ if (document.getElementById(ids[i]).value.trim() === '') ok = false; }
+  if (!ok){ mostra('e5'); return; }
+  limpa('e5'); go(6);
+}
 function pick(h){
   escolhido = h;
+  var caixas = document.querySelectorAll('#s6 .linha');
+  for (var i=0;i<caixas.length;i++){ caixas[i].classList.remove('sel'); }
+  caixas[3-h].classList.add('sel');
+  var radios = document.querySelectorAll('#s6 input[name=h]');
+  radios[3-h].checked = true;
   var v = VAL[h];
   document.getElementById('qr').src = 'data:image/png;base64,' + QR[v];
   document.getElementById('copia').textContent = PIX[v];
@@ -403,14 +435,14 @@ function copiar(){
   document.getElementById('copiado').textContent = 'copiado!';
   setTimeout(function(){ document.getElementById('copiado').textContent = ''; }, 2500);
 }
-function val5(){
+function val6(){
   var comp = document.getElementById('comprovante');
   var ok = escolhido > 0 && comp.files.length > 0 &&
            document.getElementById('c1').checked &&
            document.getElementById('c2').checked &&
            document.getElementById('c3').checked;
-  if (!ok){ mostra('e5'); return; }
-  limpa('e5'); go(6);
+  if (!ok){ mostra('e6'); return; }
+  limpa('e6'); go(7);
 }
 document.getElementById('anexos').addEventListener('change', function(e){
   var n = e.target.files.length, mb = 0;
